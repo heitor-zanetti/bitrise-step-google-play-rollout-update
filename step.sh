@@ -7,7 +7,7 @@ echo "Updating phase release for: ${package_name}"
 if [ -n "$service_account_json_key_path" ] ; then
     echo "Downloading credentials from remote file"
     wget -O "${SCRIPT_DIR}/credentials.json" "${service_account_json_key_path}"
-elif [ -n "$service_account_json_local_path" ] ; then
+elif [ -n "$service_account_json_key_local_path" ] ; then
      echo "Using credentials stored locally"
      cp "$service_account_json_key_local_path" "${SCRIPT_DIR}/credentials.json"
 else
