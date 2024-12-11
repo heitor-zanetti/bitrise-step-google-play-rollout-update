@@ -1,7 +1,6 @@
 
 import copy
 import sys
-import httplib2
 from apiclient.discovery import build
 from oauth2client.service_account import ServiceAccountCredentials
 from oauth2client.client import AccessTokenRefreshError
@@ -12,14 +11,11 @@ def main():
   TRACK = sys.argv[3]
   FORCE_USER_FRACTION = float(sys.argv[4] or "0")
 
-  credentials = ServiceAccountCredentials.from_json_keyfile_name(
-    sys.argv[2],
-    scopes='https://www.googleapis.com/auth/androidpublisher')
-
-  http = httplib2.Http()
-  http = credentials.authorize(http)
-
-  service = build('androidpublisher', 'v3', http=http)
+  credentials = service_account.Credentials.from_service_account_file(
+      sys.argv[2],
+      scopes=['https://www.googleapis.com/auth/androidpublisher']
+  )
+  service = build('androidpublisher', 'v3', credentials=credentials)
 
   try:
     edit_request = service.edits().insert(body={}, packageName=PACKAGE_NAME)
