@@ -2,7 +2,7 @@
 import copy
 import sys
 from apiclient.discovery import build
-from oauth2client.service_account import ServiceAccountCredentials
+from google.oauth2 import service_account
 from oauth2client.client import AccessTokenRefreshError
 
 # To run: rollout_update package_name json_credentials_path track force_user_fraction
