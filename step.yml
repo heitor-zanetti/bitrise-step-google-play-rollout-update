@@ -66,6 +66,13 @@ inputs:
         Path to the service account's JSON key file. It must be a Secret Environment Variable, pointing to either a file uploaded to Bitrise or to a remote download location. Either this or service_account_json_key_content
       is_required: false
       is_sensitive: true
+  - service_account_json_key_local_path:
+    opts:
+      title: Service Account JSON key file path to a local file
+      summary: |-
+        Path to the service account's JSON key file. It must be a Secret Environment Variable, pointing to a file stored locally. Either this or service_account_json_key_path or service_account_json_key_content
+      is_required: false
+      is_sensitive: true
   - service_account_json_key_content:
     opts:
       title: Service Account JSON key content

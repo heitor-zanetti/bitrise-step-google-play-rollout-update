@@ -4,9 +4,12 @@ set -e
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
 echo "Updating phase release for: ${package_name}"
-if [ -z "$service_account_json_key_content" ] ; then
+if [ -n "$service_account_json_key_path" ] ; then
     echo "Downloading credentials from remote file"
-    wget -O "${SCRIPT_DIR}/credentials.json" ${service_account_json_key_path}
+    wget -O "${SCRIPT_DIR}/credentials.json" "${service_account_json_key_path}"
+elif [ -n "$service_account_json_local_path" ] ; then
+     echo "Using credentials stored locally"
+     cp "$service_account_json_local_path" "${SCRIPT_DIR}/credentials.json"
 else
     echo "Using local content credentials"
     echo "$service_account_json_key_content" > "${SCRIPT_DIR}/credentials.json"
